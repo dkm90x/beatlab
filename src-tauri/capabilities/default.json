@@ -1,0 +1,10 @@
+{
+  "identifier": "default",
+  "description": "Native BeatLab application window",
+  "windows": [
+    "main"
+  ],
+  "permissions": [
+    "core:default"
+  ]
+}
