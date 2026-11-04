@@ -168,10 +168,16 @@ async function addFolder() {
   if (busy) return;
   setBusy(true);
   message("Choose a folder or a mounted drive…");
-  try { await call("choose_folder"); }
-  catch (error) { message("Unable to add folder: " + String(error)); }
-  finally { setBusy(false); }
-  await rescan();
+  let selected = false;
+  try {
+    await call("choose_folder");
+    selected = true;
+  } catch (error) {
+    message("Unable to add folder: " + String(error));
+  } finally {
+    setBusy(false);
+  }
+  if (selected) await rescan();
 }
 async function removeFolder(path) {
   if (busy) return;
