@@ -2,7 +2,7 @@
 
 **Your beats. One library.** An open-source, local-first beat organizer for macOS, Windows, and compatible desktop browsers.
 
-[**Try BeatLab in your browser**](https://beatlab-9bi.pages.dev/) · [**View the portfolio project**](https://portfolio.jordanmcdonley.com/#beatlab)
+[**Try BeatLab in your browser**](https://beatlab.jordanmcdonley.com/) · [**View the portfolio project**](https://portfolio.jordanmcdonley.com/#beatlab)
 
 ![Actual screenshot of the live BeatLab browser app, before selecting a folder](docs/beatlab-browser.png)
 
