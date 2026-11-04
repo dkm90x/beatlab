@@ -1,0 +1,53 @@
+name: Build BeatLab beta installers
+on:
+  push:
+    tags: ['v*']
+permissions:
+  contents: write
+jobs:
+  release:
+    name: ${{ matrix.label }}
+    runs-on: ${{ matrix.os }}
+    strategy:
+      fail-fast: false
+      matrix:
+        include:
+          - label: Apple Silicon Mac
+            os: macos-15
+            target: aarch64-apple-darwin
+          - label: Intel Mac
+            os: macos-15-intel
+            target: x86_64-apple-darwin
+          - label: Windows x64
+            os: windows-latest
+            target: ''
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+          cache: npm
+      - uses: dtolnay/rust-toolchain@stable
+        with:
+          targets: ${{ matrix.target }}
+      - uses: Swatinem/rust-cache@v2
+        with:
+          workspaces: src-tauri
+      - run: npm ci
+      - run: npm run check
+      - run: npm run icons
+      - run: cargo test --manifest-path src-tauri/Cargo.toml
+      - uses: tauri-apps/tauri-action@v1
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          APPLE_SIGNING_IDENTITY: '-'
+        with:
+          tagName: ${{ github.ref_name }}
+          releaseName: BeatLab ${{ github.ref_name }}
+          releaseBody: |
+            Local-first music-folder organizer for macOS and Windows.
+            Early beta. Installers are not Developer ID or Authenticode signed;
+            operating systems may display warnings. See README for limitations.
+          releaseDraft: true
+          prerelease: true
+          args: ${{ matrix.target && format('--target {0}', matrix.target) || '' }}
