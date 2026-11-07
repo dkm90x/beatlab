@@ -4,7 +4,9 @@
 
 [**Try BeatLab in your browser**](https://beatlab.jordanmcdonley.com/) · [**View the portfolio project**](https://portfolio.jordanmcdonley.com/#beatlab)
 
-![Actual screenshot of the live BeatLab browser app, before selecting a folder](docs/beatlab-browser.png)
+![Actual BeatLab browser app playing from Jordan’s 35-file local library](docs/screenshots/library.jpg)
+
+Screenshots show the working app with Jordan’s local files; personal audio is not included in this repository.
 
 BeatLab finds the music you already own. Choose folders or external drives, and it creates one searchable library without copying, moving, deleting, or uploading your audio.
 
@@ -53,3 +55,13 @@ Only folders selected by the user are scanned. The desktop scanner skips hidden 
 Not yet available: automatic folder watching, tag/BPM/key detection, audio duplicate fingerprinting, account sync, remotely streaming your Mac's music to a phone, signed updates, or notarized installers.
 
 This code is released under the [MIT License](LICENSE). Personal music libraries and private songwriting project files are **not** part of this repository.
+
+## Why it is built this way
+
+Read [Design decisions and tradeoffs](docs/DESIGN-DECISIONS.md) for the problem, alternatives, architecture, failure modes, evidence, and scope boundaries. This explains the implementation decisions beyond the setup instructions.
+
+## Workflow in use
+
+![Searching the local library](docs/screenshots/search.jpg)
+
+![Favorites view](docs/screenshots/favorites.jpg)
